@@ -5,7 +5,7 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>Your page title here :)</title>
+  <title style="font-family: 'Audiowide';">SoftSynthJS</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -15,16 +15,17 @@
 
   <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Audiowide|Megrim|Press+Start+2P|Vibes&display=swap" rel="stylesheet"> 
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/skeleton.css">
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="icon" type="image/png" href="images/favicon.ico">
 
 </head>
 <body>
@@ -33,11 +34,70 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
     <div class="row">
-      <div class="one-half column" style="margin-top: 25%">
-        <h4>Basic Page</h4>
-        <p>This index.html page is a placeholder with the CSS, font and favicon. It's just waiting for you to add some content! If you need some help hit up the <a href="http://www.getskeleton.com">Skeleton documentation</a>.</p>
+      <div class=".one-third column"  style="margin-top: 0px">
+        <div id="title">
+          <h4 class="title-bar">softhSynthJS Project</h4><p class="title-bar">2020</p>
+        </div>
       </div>
-    </div>
+    </div><!-- row -->
+    <div class="row">
+      <div class="six columns">
+        <button id="playBtn"><img src="images/playbtn.png" ></button>
+        <button id="stopBtn"><img src="images/stopbtn.png"></button>
+        <button id="loopBtn"><img src="images/loopbtn.png" ></button>
+        <button id="resetBtn"><img src="images/resetbtn.png"></button>
+      </div><!-- sequencer -->
+      <div class="four columns">
+        
+          <div class="row" style="margin-top: 0px">
+            <div class="one-third column">Osc.I</div>
+            <div class="one-third column">
+              <input id="o1_IO" type="checkbox" checked="checked">
+            </div>
+            <div class="one-third column">
+              <span id="o1_IO_display" class="lcd-screen">on</span>              
+            </div>
+          </div>
+          <div class="row">
+            <div class="two-thirds column">
+              <input id="o1_F_range" type="range" value="440" step="1" min="261" max="880">
+            </div>
+            <div class="one-third column">
+              <span id="oscOneFreq" class="lcd-screen">freq</span>
+            </div>
+          </div>          
+          <div class="row">
+            <div class="two-thirds column">
+              <input id="o1_Oct" type="range" value="0" step="1" min="-1" max="1">
+            </div>
+            <div class="one-third column">
+              <span id="oscOneOctave" class="lcd-screen">oct</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="two-thirds column">
+              <input id="o1_Dtn" type="range" value="0" step="1" min="-7" max="7">
+            </div>
+            <div class="one-third column">
+              <span id="oscOneDetune" class="lcd-screen">det.</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="one-third column">waveform</div>
+            <div class="two-thirds column">
+              <select id="o1_Wv_Type">
+                <option><h5>sine</h5></option>
+                <option><h5>triangle</h5></option>
+                <option><h5>square</h5></option>
+                <option><h5>sawtooth</h5></option>
+              </select>
+            </div>
+          </div>
+
+
+
+      </div>
+    </div><!-- row -->
   </div>
 
 <!-- End Document
@@ -45,8 +105,19 @@
 </body>
 
   <!-- libraries -->
+  <script src="https://unpkg.com/@webcomponents/webcomponentsjs@%5E2/webcomponents-bundle.js"></script>
+  <!--<script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous">
+  </script>-->
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.4.84/Tone.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.4.84/Tone.js.map"></script>
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.4.84/Tone.js.map"></script>-->
   <script src="libs/tone-ui.js"></script>
+
+  <!-- scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/sequencer.js"></script>
   
 </html>
