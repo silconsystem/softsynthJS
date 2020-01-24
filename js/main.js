@@ -5,6 +5,7 @@
  */
 // control variables
 var oscOneFreq,
+	oscOneOct,
 	oscOneType,
 	oscOneDetune;
 
@@ -46,8 +47,33 @@ o1_IO.onchange = function() {
 		console.log('oscillator 1 on = ' + o1_on);
 	}
 }
-
+// osc I frequency range slider, write to lcd display and set variable value
 o1_Freq.onchange = function() {
+
 	oscOneFreq = o1_Freq.value;
 	document.getElementById('oscOneFreq').innerHTML = oscOneFreq;
+
+	console.log('frequency value = ' + o1_Freq.value);
 }
+
+// osc I octave selector,  write to lcd display and set variable value
+o1_Oct.onchange = function() {
+
+	oscOneOct = o1_Oct.value;
+	document.getElementById('oscOneOctave').innerHTML = oscOneOct;
+}
+
+// osc I detune range slider, write to lcd display and set variable value
+o1_Dtn.onchange = function() {
+
+	oscOneDetune = o1_Dtn.value;
+	document.getElementById('oscOneDetune').innerHTML = oscOneDetune;
+}
+
+// osc I wave select, write to lcd display and set variable value
+o1_Wv_sel.onchange = function() {
+
+	oscOneType = o1_Wv_sel.value;
+	
+}
+
