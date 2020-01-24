@@ -5,8 +5,12 @@ var stopButton 		= document.getElementById('stopBtn');
 
 startButton.onclick = function() {
 
+
+	oscOne.frequency 	= oscOneFreq;
+	oscOne.type 		= oscOneType;
+	oscOne.detune 		= oscOneDetune;
+
 	oscOne.start();
-	oscOneArgs();
 	o1_started = true;
 	console.log('started Oscillator');
 	console.log('o1_started = ' + o1_started);
