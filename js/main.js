@@ -10,7 +10,7 @@ var oscOneFreq,
 	oscOneDetune;
 
 // create oscillator one
-const oscOne = new Tone.Oscillator(oscOneFreq, oscOneType).toMaster();
+var oscOne = new Tone.Oscillator().toMaster();
 
 // sequencer/synth start/stop/loop & reset buttons
 var startButton 	= document.getElementById('playBtn'),
@@ -25,13 +25,20 @@ var o1_IO 		= document.getElementById('o1_IO'),
 	o1_Dtn		= document.getElementById('o1_Dtn'),
 	o1_WvType	= document.getElementById('o1_Wv_Type');
 
-o1_IO.checked 	= true;
+// set default: oscOne = on
+o1_IO.checked = true;
 
 // flags
 var o1_on		= true,
 	o1_started 	= false,
 	o1_loop		= false,
 	o1_Wv_sel	= false;
+
+function oscOneArgs() {
+	oscOne.frequency 	= o1_Freq.value;
+	oscOne.type 		= o1_Wv_sel;
+	oscOne.detune 		= o1_Dtn;
+}
 
 // osc I toggle boolean, default = 1 / true (on/off)
 o1_IO.onchange = function() {
@@ -55,6 +62,7 @@ o1_Freq.onchange = function() {
 
 	console.log('frequency value = ' + o1_Freq.value);
 }
+o1_Freq.onchange();
 
 // osc I octave selector,  write to lcd display and set variable value
 o1_Oct.onchange = function() {
@@ -69,11 +77,12 @@ o1_Dtn.onchange = function() {
 	oscOneDetune = o1_Dtn.value;
 	document.getElementById('oscOneDetune').innerHTML = oscOneDetune;
 }
+o1_Dtn.onchange();
 
 // osc I wave select, write to lcd display and set variable value
 o1_Wv_sel.onchange = function() {
 
 	oscOneType = o1_Wv_sel.value;
-	
+
 }
 
