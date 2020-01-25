@@ -10,11 +10,7 @@ var oscOneFreq,
 	oscOneDetune;
 
 // create oscillator one
-var oscOne = new Tone.Oscillator({
-	"type" : "sine",
-	"frequency" : oscOneFreq,
-	"volume" : -16
-}).toMaster();
+var oscOne = new Tone.Oscillator().toMaster();
 
 // sequencer/synth start/stop/loop & reset buttons
 var startButton 	= document.getElementById('playBtn'),
@@ -66,6 +62,7 @@ var	i, j;
 		pythaTuningFreq.push(pythagoreanTuning[j].Frequency);
 
 		if (stdTuning[i].Frequency == matchStr) {
+
 			// if range value matches JSON object frequency write Note to span 
 			document.getElementById('oscOneFreq').innerHTML = stdTuning[i].Note;
 			console.log('range input match');
@@ -79,15 +76,15 @@ var	i, j;
 		"pythagoreanTuning freq: " + pythaTuningFreq[48] + " succesfully loaded" + "\n");
 }
 /*		 input data handlers 			*/
+
 // osc I toggle boolean, default = 1 / true (on/off)
 o1_IO.onchange = function() {
 	
-	if (o1_IO.checked == true) {
-		o1_on = true;
-		document.getElementById('o1_IO_display').innerHTML = "on";
-		console.log('oscillator 1 on = ' + o1_on);
-	}
-	else if (o1_IO.checked == false) {
+	o1_on = true;
+	document.getElementById('o1_IO_display').innerHTML = "on";
+	console.log('oscillator 1 on = ' + o1_on);
+	
+	if (o1_IO.checked == false) {
 		o1_on = false;
 		document.getElementById('o1_IO_display').innerHTML = "off";
 		console.log('oscillator 1 on = ' + o1_on);
@@ -96,7 +93,7 @@ o1_IO.onchange = function() {
 // osc I frequency range slider, write to lcd display and set variable value
 o1_Freq.onchange = function() {
 
-	oscOneFreq = o1_Freq.value;
+	oscOneFreq = parseInt(o1_Freq.value);
 
 	document.getElementById('oscOneFreq').innerHTML = oscOneFreq;
 
@@ -116,7 +113,7 @@ o1_Oct.onchange = function() {
 // osc I detune range slider, write to lcd display and set variable value
 o1_Dtn.onchange = function() {
 
-	oscOneDetune = o1_Dtn.value;
+	oscOneDetune = parseInt(o1_Dtn.value);
 	document.getElementById('oscOneDetune').innerHTML = oscOneDetune;
 }
 o1_Dtn.onchange();
