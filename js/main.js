@@ -12,7 +12,7 @@ var oscOneFreq,
 // create oscillator one
 var oscOne = new Tone.Oscillator({
 	"type" : "sine",
-	"frequency" : 440,
+	"frequency" : oscOneFreq,
 	"volume" : -16
 }).toMaster();
 
@@ -46,27 +46,38 @@ var pythaTuning			= JSON.parse(JSON.stringify(pythagoreanTuning));
 var stdTuningNotes 		= [],
 	stdTuningFreq 		= [],
 	pythaTuningNotes	= [],
-	pythaTuningFreq		= [],
-	i,
-	j;
+	pythaTuningFreq		= [];
 
 // populate array with the JSON frequency values to test against
-for (i = 0, j = 0; i <= stdTuning.length - 1, j <= pythaTuning.length -1; i++, j++) {
-	// add note and Frequency values from our JSON objects
-	// 440 Hz tuning
-	stdTuningNotes.push(stdTuning[i].Note);
-	stdTuningFreq.push(stdTuning[i].Frequency);
-	// 432 Hz tuning
-	pythaTuningNotes.push(pythagoreanTuning[j].Note);
-	pythaTuningFreq.push(pythagoreanTuning[j].Frequency);
-	// TODO "remove console outputs"
-	// log output
-	console.log("standardTuning notes: " + stdTuningNotes[i] +"\n" + 
-		"standardTuning freq: " + stdTuningFreq[i] +"\n" +
-		"pythagoreanTuning notes: " + pythaTuningNotes[j] +"\n" +
-		"pythagoreanTuning freq: " + pythaTuningFreq[j]);
-}
+function loadTuningData() {
 
+var matchStr = oscOneFreq.toString()	
+var	i, j;
+
+	for (i = 0, j = 0; i <= stdTuning.length - 1, j <= pythaTuning.length -1; i++, j++) {
+
+		// add note and Frequency values from our JSON objects
+		// 440 Hz tuning
+		stdTuningNotes.push(stdTuning[i].Note);
+		stdTuningFreq.push(stdTuning[i].Frequency);
+
+		// 432 Hz tuning
+		pythaTuningNotes.push(pythagoreanTuning[j].Note);
+		pythaTuningFreq.push(pythagoreanTuning[j].Frequency);
+
+		if (stdTuning[i].Frequency == matchStr) {
+			// if range value matches JSON object frequency write Note to span 
+			document.getElementById('oscOneFreq').innerHTML = stdTuning[i].Note;
+			console.log('range input match');
+		}
+
+	}
+	// log output
+	console.log("standardTuning notes: " + stdTuningNotes[48] +" succesfully loaded" + "\n" + 
+		"standardTuning freq: " + stdTuningFreq[48] +" succesfully loaded" + "\n" +
+		"pythagoreanTuning notes: " + pythaTuningNotes[48] +" succesfully loaded" + "\n" +
+		"pythagoreanTuning freq: " + pythaTuningFreq[48] + " succesfully loaded" + "\n");
+}
 /*		 input data handlers 			*/
 // osc I toggle boolean, default = 1 / true (on/off)
 o1_IO.onchange = function() {
@@ -86,9 +97,12 @@ o1_IO.onchange = function() {
 o1_Freq.onchange = function() {
 
 	oscOneFreq = o1_Freq.value;
+
 	document.getElementById('oscOneFreq').innerHTML = oscOneFreq;
 
-	console.log('frequency value = ' + o1_Freq.value);
+	loadTuningData();
+
+	console.log('frequency value = ' + oscOneFreq);
 }
 o1_Freq.onchange();
 
