@@ -93,10 +93,10 @@ o1_IO.onchange = function() {
 // osc I frequency range slider, write to lcd display and set variable value
 o1_Freq.onchange = function() {
 
-	oscOneFreq = parseInt(o1_Freq.value);
+	// Tone.Oscillator takes a float as input, data is in string format
+	oscOneFreq = parseFloat(o1_Freq.value);
 
-	document.getElementById('oscOneFreq').innerHTML = oscOneFreq;
-
+	document.getElementById('oscOneFreq').innerHTML = oscOneFreq;	
 	loadTuningData();
 
 	console.log('frequency value = ' + oscOneFreq);
