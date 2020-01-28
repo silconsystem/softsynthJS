@@ -41,29 +41,170 @@
       </div>
     </div><!-- row -->
     <div class="row">
-      <div class="six columns">
-        <button id="playBtn"><img src="images/playbtn.png" ></button>
-        <button id="stopBtn"><img src="images/stopbtn.png"></button>
-        <button id="loopBtn"><img src="images/loopbtn.png" ></button>
-        <button id="resetBtn"><img src="images/resetbtn.png"></button>
+      <div id="sequencer" class="six columns">
+        <div id="button-controls">
+          <img id="button-logo" src="images/wave-img.png">
+          <button id="playBtn"><img src="images/playbtn.png" ></button>
+          <button id="stopBtn"><img src="images/stopbtn.png"></button>
+          <button id="loopBtn"><img src="images/loopbtn.png" ></button>
+          <button id="resetBtn"><img src="images/resetbtn.png"></button>
+      </div>
+        <!--<div class="sequencer-ctrls">
+          <table id="seq-controls" class="ctrl-layout">
+            <tr>
+              <td colspan="8">
+                <h1>sequencer</h1>
+              </td>
+            </tr>
+    
+            <tr>
+              <td>
+                <button id="start" class="btn-ctrl">start</button>
+              </td>
+              <td>
+                <button id="stop" class="btn-ctrl">stop</button>
+              </td>
+              <td colspan="3">
+                <input id="tempo-slider" type="range" class="range-sliders" min="60" max="250" value="120" step="1"></input>
+              </td>
+              <td>
+                BPM: 
+              </td>
+              <td>
+                <span id="tempo"></span>
+              </td>
+              <td>
+                <button id="reset" class="btn-ctrl">reset</button>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="8">
+                <hr class="styled-hr">
+              </td>
+            </tr>
+              </td>
+            </tr>
+            <tr align="center">
+              <td class="seq-cells" width="64"><input type="checkbox" id="seq-radio-0" class="seq-check-btn"></input></td>
+              <td class="seq-cells" width="64"><input type="checkbox" id="seq-radio-1" class="seq-check-btn"></input></td>
+              <td class="seq-cells" width="64"><input type="checkbox" id="seq-radio-2" class="seq-check-btn"></input></td>
+              <td class="seq-cells" width="64"><input type="checkbox" id="seq-radio-3" class="seq-check-btn"></input></td>
+              <td class="seq-cells" width="64"><input type="checkbox" id="seq-radio-4" class="seq-check-btn"></input></td>
+              <td class="seq-cells" width="64"><input type="checkbox" id="seq-radio-5" class="seq-check-btn"></input></td>
+              <td class="seq-cells" width="64"><input type="checkbox" id="seq-radio-6" class="seq-check-btn"></input></td>
+              <td class="seq-cells" width="64"><input type="checkbox" id="seq-radio-7" class="seq-check-btn"></input></td>
+            </tr>
+            <tr align="center">
+              <td class="seq-cells" width="64">
+                <input type="range" orient="vertical" id="seq-note-select-0" class="vertical-range" list="note-list" min="0" max="12" step="1" oninput="getValues(this)"></input>
+              </td>
+              <td class="seq-cells" width="64">
+                <input type="range" orient="vertical" id="seq-note-select-1" class="vertical-range" list="note-list" min="0" max="12" step="1" oninput="getValues(this)"></input>
+              </td>
+              <td class="seq-cells" width="64">
+                <input type="range" orient="vertical" id="seq-note-select-2" class="vertical-range" list="note-list" min="0" max="12" step="1" oninput="getValues(this)"></input>
+              </td>
+              <td class="seq-cells" width="64">
+                <input type="range" orient="vertical" id="seq-note-select-3" class="vertical-range" list="note-list" min="0" max="12" step="1" oninput="getValues(this)"></input>
+              </td>
+              <td class="seq-cells" width="64">
+                <input type="range" orient="vertical" id="seq-note-select-4" class="vertical-range" list="note-list" min="0" max="12" step="1" oninput="getValues(this)"></input>
+              </td>
+              <td class="seq-cells" width="64">
+                <input type="range" orient="vertical" id="seq-note-select-5" class="vertical-range" list="note-list" min="0" max="12" step="1" oninput="getValues(this)"></input>
+              </td>
+              <td class="seq-cells" width="64">
+                <input type="range" orient="vertical" id="seq-note-select-6" class="vertical-range" list="note-list" min="0" max="12" step="1" oninput="getValues(this)"></input>
+              </td>
+              <td class="seq-cells" width="64">
+                <input type="range" orient="vertical" id="seq-note-select-7" class="vertical-range" list="note-list" min="0" max="12" step="1" oninput="getValues(this)"></input>
+              </td>
+            </tr>
+            <tr align="center">
+              <td class="seq-cells" width="64">
+                <span id="seq-note-0" class="seq-note"></span>
+              </td>
+              <td class="seq-cells" width="64">
+                <span id="seq-note-1" class="seq-note"></span>
+              </td>
+              <td class="seq-cells" width="64">
+                <span id="seq-note-2" class="seq-note"></span>
+              </td>
+              <td class="seq-cells" width="64">
+                <span id="seq-note-3" class="seq-note"></span>
+              </td>
+              <td class="seq-cells" width="64">
+                <span id="seq-note-4" class="seq-note"></span>
+              </td>
+              <td class="seq-cells" width="64">
+                <span id="seq-note-5" class="seq-note"></span>
+              </td>
+              <td class="seq-cells" width="64">
+                <span id="seq-note-6" class="seq-note"></span>
+              </td>
+              <td class="seq-cells" width="64">
+                <span id="seq-note-7" class="seq-note"></span>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">octave: </td>
+              <td colspan="4">
+                <input type="range" id="oct-range" class="range-sliders" min="1" max="8" value="2" step="1">
+              </td>
+              <td colspan="2" align="center">
+                <span id="oct-selected"></span>
+              </td>
+            </tr>
+          </table> 
+          <datalist id="note-list">
+            <option>C</option>
+            <option>C#/Db</option>
+            <option>D</option>
+            <option>D#/Eb</option>
+            <option>E</option>
+            <option>E#/Fb</option>
+            <option>F</option>
+            <option>F#/Gb</option>
+            <option>G</option>
+            <option>G#/Ab</option>
+            <option>A</option>
+            <option>A#/Bb</option>
+            <option>B</option>
+            <option>B#/Cb</option>
+          </datalist>
+        </div>--><!-- sequencer-ctrls -->
       </div><!-- sequencer -->
-      <div class="four columns">
+      <div id="oscillator-one" class="four columns">
         
           <div class="row" style="margin-top: 0px">
-            <div class="one-third column">Osc.I</div>
+            <div class="one-third column" >Osc.I</div>
             <div class="one-third column">
               <input id="o1_IO" type="checkbox" checked="checked">
             </div>
             <div class="one-third column">
-              <span id="o1_IO_display" class="lcd-screen">on</span>              
+              <span id="o1_IO_display" class="lcd-screen">on</span><h6>I/O</h6>             
             </div>
           </div>
           <div class="row">
             <div class="two-thirds column">
-              <input id="o1_F_range" type="range" value="440" step="1" min="261" max="880">
+              <input id="o1_F_range" type="range" value="261.63" step="0.01" min="261.63" max="493.88" list="notelist">
+                <datalist id="notelist">
+                  <option>C</option>
+                  <option>C#</option>
+                  <option>D</option>
+                  <option>D#</option>
+                  <option>E</option>
+                  <option>F</option>
+                  <option>F#</option>
+                  <option>G</option>
+                  <option>G#</option>
+                  <option>A</option>
+                  <option>A#</option>
+                  <option>B</option>
+              </datalist>
             </div>
             <div class="one-third column">
-              <span id="oscOneFreq" class="lcd-screen">freq</span>
+              <span id="oscOneFreq" class="lcd-screen">freq</span><h6>Frq</h6>
             </div>
           </div>          
           <div class="row">
@@ -71,26 +212,28 @@
               <input id="o1_Oct" type="range" value="0" step="1" min="-1" max="1">
             </div>
             <div class="one-third column">
-              <span id="oscOneOctave" class="lcd-screen">oct</span>
+              <span id="oscOneOctave" class="lcd-screen">oct</span><h6>Oct</h6>
             </div>
           </div>
           <div class="row">
             <div class="two-thirds column">
-              <input id="o1_Dtn" type="range" value="0" step="1" min="-7" max="7">
+              <input id="o1_Dtn" type="range" value="0" step="10" min="-60" max="60">
             </div>
             <div class="one-third column">
-              <span id="oscOneDetune" class="lcd-screen">det.</span>
+              <span id="oscOneDetune" class="lcd-screen">det</span><h6>Det</h6>
             </div>
           </div>
-          <div class="row">
-            <div class="one-third column">waveform</div>
-            <div class="two-thirds column">
-              <select id="o1_Wv_Type">
-                <option><h5>sine</h5></option>
-                <option><h5>triangle</h5></option>
-                <option><h5>square</h5></option>
-                <option><h5>sawtooth</h5></option>
-              </select>
+          <div class="row"><div class="two-thirds column">
+            <select id="o1_Wv_sel" class="wave-options">
+              <option><h5>select:</h5></option>
+              <option><h5>sine</h5></option>
+              <option><h5>triangle</h5></option>
+              <option><h5>square</h5></option>
+              <option><h5>sawtooth</h5></option>
+            </select>
+          </div>
+            <div class="one-third column">
+              <span id="o1_Wv_Type" class="lcd-screen">wav</span>
             </div>
           </div>
 
@@ -115,6 +258,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.4.84/Tone.js"></script>
   <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.4.84/Tone.js.map"></script>-->
   <script src="libs/tone-ui.js"></script>
+
+  <!-- JSON tuning files -->
+  <script src="js/JSON/standard-tuning.json"></script>
+  <script src="js/JSON/pytha-tuning.json"></script>
 
   <!-- scripts -->
   <script src="js/main.js"></script>
