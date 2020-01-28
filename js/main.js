@@ -3,12 +3,6 @@
 /* global variables / getting and setting
  *
  */
-// control variables
-var oscOneFreq,
-	oscOneOct,
-	oscOneType,
-	oscOneDetune;
-
 // create oscillator one
 var oscOne = new Tone.Oscillator().toMaster();
 
@@ -24,6 +18,12 @@ var o1_IO 		= document.getElementById('o1_IO'),
 	o1_Oct		= document.getElementById('o1_Oct'),
 	o1_Dtn		= document.getElementById('o1_Dtn'),
 	o1_Wv_sel	= document.getElementById('o1_Wv_sel');
+
+// control variables
+var oscOneFreq		= parseFloat(o1_Freq.value),
+	oscOneOct		= o1_Oct.value,
+	oscOneType		= o1_Wv_sel.value,
+	oscOneDetune	= o1_Dtn.value;	
 
 // set default: oscOne = on | type = sine
 o1_IO.checked 	= true;
@@ -44,11 +44,13 @@ var stdTuningNotes 		= [],
 	pythaTuningNotes	= [],
 	pythaTuningFreq		= [];
 
+var matchedNote;
+
 // populate array with the JSON frequency values to test against
 function loadTuningData() {
 
 var matchStr = oscOneFreq.toString()	
-var	i, j;
+var	i, j, c;
 
 	for (i = 0, j = 0; i <= stdTuning.length - 1, j <= pythaTuning.length -1; i++, j++) {
 
@@ -61,14 +63,16 @@ var	i, j;
 		pythaTuningNotes.push(pythagoreanTuning[j].Note);
 		pythaTuningFreq.push(pythagoreanTuning[j].Frequency);
 
-		if (stdTuning[i].Frequency == matchStr) {
+		if (matchStr == stdTuning[i].Frequency) {
+
+			matchedNote = stdTuning[i].Note;
 
 			// if range value matches JSON object frequency write Note to span 
-			document.getElementById('oscOneFreq').innerHTML = stdTuning[i].Note;
-			console.log('range input match');
+			document.getElementById('oscOneFreq').innerHTML = matchedNote;
+			console.log('range input match: ' + matchedNote);
 		}
-
 	}
+	
 	// log output
 	console.log("standardTuning notes: " + stdTuningNotes[48] +" succesfully loaded" + "\n" + 
 		"standardTuning freq: " + stdTuningFreq[48] +" succesfully loaded" + "\n" +
@@ -91,17 +95,16 @@ o1_IO.onchange = function() {
 	}
 }
 // osc I frequency range slider, write to lcd display and set variable value
-o1_Freq.onchange = function() {
-
+//o1_Freq.oninput = function() {
+o1_Freq.addEventListener('input', function () {
 	// Tone.Oscillator takes a float as input, data is in string format
 	oscOneFreq = parseFloat(o1_Freq.value);
 
-	document.getElementById('oscOneFreq').innerHTML = oscOneFreq;	
-	loadTuningData();
-
+	document.getElementById('oscOneFreq').innerHTML = oscOneFreq;
+	
+	loadTuningData();	
 	console.log('frequency value = ' + oscOneFreq);
-}
-o1_Freq.onchange();
+}, false);
 
 // osc I octave selector,  write to lcd display and set variable value
 o1_Oct.onchange = function() {
@@ -111,12 +114,11 @@ o1_Oct.onchange = function() {
 }
 
 // osc I detune range slider, write to lcd display and set variable value
-o1_Dtn.onchange = function() {
+o1_Dtn.addEventListener('input', function () {
 
 	oscOneDetune = parseInt(o1_Dtn.value);
 	document.getElementById('oscOneDetune').innerHTML = oscOneDetune;
-}
-o1_Dtn.onchange();
+}, false);
 
 // osc I wave select, write to lcd display and set variable value
 o1_Wv_sel.onchange = function() {
@@ -124,6 +126,7 @@ o1_Wv_sel.onchange = function() {
 	var display = document.getElementById('o1_Wv_Type');
 
 	oscOneType = o1_Wv_sel.value;
+
 
 	if (oscOneType == "sine") {
 		display.innerHTML = "sin";

@@ -30,11 +30,10 @@ function startOscillator() {
 startButton.onclick = function() {
 
 	// turn on o1_on flag and start the oscillator with function
-	if (o1_on = true) {
-		startOscillator();	
-		console.log('started Oscillator');
-		console.log('o1_started = ' + o1_started);
-	}
+	startOscillator();	
+	console.log('started Oscillator');
+	console.log('o1_started = ' + o1_started);
+
 
 	if (o1_on == false) {
 		oscOne.stop();
