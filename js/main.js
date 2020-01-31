@@ -44,13 +44,23 @@ var stdTuningNotes 		= [],
 	pythaTuningNotes	= [],
 	pythaTuningFreq		= [];
 
-var matchedNote;
+var matchedNote,
+	midOctave,
+	lowOctave,
+	highOctave,
+	midFreq,
+	lowFreq,
+	highFreq,
+	activeFreqValue,
+	activeNoteValue; 
+
+oscOneFreq = activeFreqValue;
 
 // populate array with the JSON frequency values to test against
 function loadTuningData() {
 
-var matchStr = oscOneFreq.toString()	
-var	i, j, c;
+//var matchFloat = oscOneFreq;	
+var	i, j;
 
 	for (i = 0, j = 0; i <= stdTuning.length - 1, j <= pythaTuning.length -1; i++, j++) {
 
@@ -63,15 +73,15 @@ var	i, j, c;
 		pythaTuningNotes.push(pythagoreanTuning[j].Note);
 		pythaTuningFreq.push(pythagoreanTuning[j].Frequency);
 
-		if (matchStr == stdTuning[i].Frequency) {
+		midOctave 	= stdTuningNotes.slice(48, 60);
+		lowOctave 	= stdTuningNotes.slice(36, 48);
+		highOctave 	= stdTuningNotes.slice(62, 74);
 
-			matchedNote = stdTuning[i].Note;
+		midFreq 	= stdTuningFreq.slice(48, 60);
+		lowFreq 	= stdTuningFreq.slice(36, 48);
+		highFreq 	= stdTuningFreq.slice(62, 74);
 
-			// if range value matches JSON object frequency write Note to span 
-			document.getElementById('oscOneFreq').innerHTML = matchedNote;
-			console.log('range input match: ' + matchedNote);
-		}
-	}
+	}	
 	
 	// log output
 	console.log("standardTuning notes: " + stdTuningNotes[48] +" succesfully loaded" + "\n" + 
@@ -79,6 +89,46 @@ var	i, j, c;
 		"pythagoreanTuning notes: " + pythaTuningNotes[48] +" succesfully loaded" + "\n" +
 		"pythagoreanTuning freq: " + pythaTuningFreq[48] + " succesfully loaded" + "\n");
 }
+
+function setOctave() {
+
+	var i;
+	// check osc value and narrow the notelist, then write the result to display
+	if (oscOneOct == "0") {
+		o1_Freq.min 	= midFreq[0];
+		o1_Freq.max 	= midFreq[11];
+		activeFreqValue = midFreq;
+		activeNoteValue = midOctave;
+
+		for (i = 0; i <= midFreq[i]; i++) {
+
+			o1_Freq.list.options[i].innerHTML = midFreq[i];
+		}
+
+	} else if (oscOneOct == "1") {
+		o1_Freq.min 	= highFreq[0];
+		o1_Freq.max 	= highFreq[11];
+		activeFreqValue = highFreq;
+		activeNoteValue = highOctave;
+
+		for (i = 0; i <= highFreq[i]; i++) {
+
+			o1_Freq.list.options[i].innerHTML = highFreq[i];
+		}
+
+	} else if (oscOneOct == "-1") {
+		o1_Freq.min 	= lowFreq[0];
+		o1_Freq.max 	= lowFreq[11];
+		activeFreqValue = lowFreq;
+		activeNoteValue = lowOctave;
+		
+		for (i = 0; i <= lowFreq[i]; i++) {
+
+			o1_Freq.list.options[i].innerHTML = lowFreq[i];
+		}
+	}
+}
+
 /*		 input data handlers 			*/
 
 // osc I toggle boolean, default = 1 / true (on/off)
@@ -97,12 +147,21 @@ o1_IO.onchange = function() {
 // osc I frequency range slider, write to lcd display and set variable value
 //o1_Freq.oninput = function() {
 o1_Freq.addEventListener('input', function () {
-	// Tone.Oscillator takes a float as input, data is in string format
-	oscOneFreq = parseFloat(o1_Freq.value);
+	var i;
 
+	// Tone.Oscillator takes a float as input, data is in string format
+	oscOneFreq 	= parseFloat(o1_Freq.value);
 	document.getElementById('oscOneFreq').innerHTML = oscOneFreq;
 	
-	loadTuningData();	
+	for (i = 0; i <= activeFreqValue.length; i++) {
+
+		if (oscOneFreq == activeFreqValue[i]) {
+			document.getElementById('oscOneFreq').innerHTML = activeNoteValue[i];
+			console.log('found match: ' + activeNoteValue[i] );
+			break;
+		}
+	}
+
 	console.log('frequency value = ' + oscOneFreq);
 }, false);
 
@@ -110,6 +169,8 @@ o1_Freq.addEventListener('input', function () {
 o1_Oct.onchange = function() {
 
 	oscOneOct = o1_Oct.value;
+	setOctave();
+	
 	document.getElementById('oscOneOctave').innerHTML = oscOneOct;
 }
 
