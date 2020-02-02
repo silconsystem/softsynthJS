@@ -19,6 +19,7 @@
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- TODO: ?? <link rel="stylesheet" href="css/rangeslider.css">-->
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/skeleton.css">
@@ -187,21 +188,21 @@
           </div>
           <div class="row">
             <div class="two-thirds column">
-              <input id="o1_F_range" type="range" value="261.63" step="0.01" min="261.63" max="493.88" list="notelist">
-                <datalist id="notelist">
-                  <option>C</option>
-                  <option>C#</option>
-                  <option>D</option>
-                  <option>D#</option>
-                  <option>E</option>
-                  <option>F</option>
-                  <option>F#</option>
-                  <option>G</option>
-                  <option>G#</option>
-                  <option>A</option>
-                  <option>A#</option>
-                  <option>B</option>
-              </datalist>
+              <input id="o1_F_range" type="range" step="0.01" list="frequencyData">
+              <datalist id="frequencyData">
+                <option>10</option>
+                <option>20</option>
+                <option>30</option>
+                <option>40</option>
+                <option>50</option>
+                <option>60</option>
+                <option>70</option>
+                <option>80</option>
+                <option>90</option>
+                <option>100</option>
+                <option>110</option>
+                <option>120</option>
+              </datalist>>
             </div>
             <div class="one-third column">
               <span id="oscOneFreq" class="lcd-screen">freq</span><h6>Frq</h6>
@@ -258,12 +259,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.4.84/Tone.js"></script>
   <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.4.84/Tone.js.map"></script>-->
   <script src="libs/tone-ui.js"></script>
+  <!--<script src="js/range-js/rangeslider.js"></script>-->
 
   <!-- JSON tuning files -->
   <script src="js/JSON/standard-tuning.json"></script>
   <script src="js/JSON/pytha-tuning.json"></script>
 
   <!-- scripts -->
+  <script src="js/noteInterval.js"></script>
   <script src="js/main.js"></script>
   <script src="js/sequencer.js"></script>
   
