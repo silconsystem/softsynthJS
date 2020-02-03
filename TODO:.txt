@@ -1,0 +1,7 @@
+TODO:
+
+setOctave not working
+
+o1_Oct.value must set note values in o1_Freq.list.options[x].innerHTML display
+
+cut double use as mush as possible

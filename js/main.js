@@ -25,6 +25,8 @@ var oscOneFreq		= parseFloat(o1_Freq.value),
 	oscOneType		= o1_Wv_sel.value,
 	oscOneDetune	= o1_Dtn.value;	
 
+o1_Oct.value = "0";
+
 // set default: oscOne = on | type = sine
 o1_IO.checked 	= true;
 o1_Wv_sel.value = "sine";
@@ -75,11 +77,11 @@ var	i, j;
 
 		midOctave 	= stdTuningNotes.slice(48, 60);
 		lowOctave 	= stdTuningNotes.slice(36, 48);
-		highOctave 	= stdTuningNotes.slice(62, 74);
+		highOctave 	= stdTuningNotes.slice(60, 72);
 
 		midFreq 	= stdTuningFreq.slice(48, 60);
 		lowFreq 	= stdTuningFreq.slice(36, 48);
-		highFreq 	= stdTuningFreq.slice(62, 74);
+		highFreq 	= stdTuningFreq.slice(60, 72);
 
 	}	
 	
@@ -100,6 +102,8 @@ function setOctave() {
 		activeFreqValue = midFreq;
 		activeNoteValue = midOctave;
 
+		document.getElementById('oscOneFreq').innerHTML = midFreq[0];
+
 		for (i = 0; i <= midFreq[i]; i++) {
 
 			o1_Freq.list.options[i].innerHTML = midFreq[i];
@@ -111,6 +115,8 @@ function setOctave() {
 		activeFreqValue = highFreq;
 		activeNoteValue = highOctave;
 
+		document.getElementById('oscOneFreq').innerHTML = highFreq[0];
+
 		for (i = 0; i <= highFreq[i]; i++) {
 
 			o1_Freq.list.options[i].innerHTML = highFreq[i];
@@ -121,6 +127,8 @@ function setOctave() {
 		o1_Freq.max 	= lowFreq[11];
 		activeFreqValue = lowFreq;
 		activeNoteValue = lowOctave;
+
+		document.getElementById('oscOneFreq').innerHTML = lowFreq[0];
 		
 		for (i = 0; i <= lowFreq[i]; i++) {
 
