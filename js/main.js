@@ -25,8 +25,6 @@ var oscOneFreq		= parseFloat(o1_Freq.value),
 	oscOneType		= o1_Wv_sel.value,
 	oscOneDetune	= o1_Dtn.value;	
 
-o1_Oct.value = "0";
-
 // set default: oscOne = on | type = sine
 o1_IO.checked 	= true;
 o1_Wv_sel.value = "sine";
@@ -35,6 +33,8 @@ o1_Wv_sel.value = "sine";
 var o1_on		= true,
 	o1_started 	= false,
 	o1_loop		= false;
+
+o1_Oct.value 	= "0";
 
 // note frequencies to test against
 // JSON tuning data
@@ -75,14 +75,6 @@ var	i, j;
 		pythaTuningNotes.push(pythagoreanTuning[j].Note);
 		pythaTuningFreq.push(pythagoreanTuning[j].Frequency);
 
-		midOctave 	= stdTuningNotes.slice(48, 60);
-		lowOctave 	= stdTuningNotes.slice(36, 48);
-		highOctave 	= stdTuningNotes.slice(60, 72);
-
-		midFreq 	= stdTuningFreq.slice(48, 60);
-		lowFreq 	= stdTuningFreq.slice(36, 48);
-		highFreq 	= stdTuningFreq.slice(60, 72);
-
 	}	
 	
 	// log output
@@ -94,47 +86,47 @@ var	i, j;
 
 function setOctave() {
 
-	var i;
-	// check osc value and narrow the notelist, then write the result to display
-	if (oscOneOct == "0") {
-		o1_Freq.min 	= midFreq[0];
-		o1_Freq.max 	= midFreq[11];
-		activeFreqValue = midFreq;
-		activeNoteValue = midOctave;
+	var i;	
+	// set the octave slices
+	midOctave 	= stdTuningNotes.slice(48, 60);
+	lowOctave 	= stdTuningNotes.slice(36, 48);
+	highOctave 	= stdTuningNotes.slice(60, 72);
 
-		document.getElementById('oscOneFreq').innerHTML = midFreq[0];
+	midFreq 	= stdTuningFreq.slice(48, 60);
+	lowFreq 	= stdTuningFreq.slice(36, 48);
+	highFreq 	= stdTuningFreq.slice(60, 72);
 
-		for (i = 0; i <= midFreq[i]; i++) {
+	// get value from octave range and set array of notes to use
+	switch (oscOneOct) {
 
-			o1_Freq.list.options[i].innerHTML = midFreq[i];
-		}
+		// fill activeNoteValue & activeNoteValue
+		case "0":
+			o1_Freq.min 	= midFreq[0];
+			o1_Freq.max 	= midFreq[11];
+			activeFreqValue = midFreq;
+			activeNoteValue = midOctave;
 
-	} else if (oscOneOct == "1") {
-		o1_Freq.min 	= highFreq[0];
-		o1_Freq.max 	= highFreq[11];
-		activeFreqValue = highFreq;
-		activeNoteValue = highOctave;
+			break;
 
-		document.getElementById('oscOneFreq').innerHTML = highFreq[0];
+		case "1":
+			o1_Freq.min 	= highFreq[0];
+			o1_Freq.max 	= highFreq[11];
+			activeFreqValue = highFreq;
+			activeNoteValue = highOctave;
 
-		for (i = 0; i <= highFreq[i]; i++) {
+			break;
 
-			o1_Freq.list.options[i].innerHTML = highFreq[i];
-		}
-
-	} else if (oscOneOct == "-1") {
-		o1_Freq.min 	= lowFreq[0];
-		o1_Freq.max 	= lowFreq[11];
-		activeFreqValue = lowFreq;
-		activeNoteValue = lowOctave;
-
-		document.getElementById('oscOneFreq').innerHTML = lowFreq[0];
-		
-		for (i = 0; i <= lowFreq[i]; i++) {
-
-			o1_Freq.list.options[i].innerHTML = lowFreq[i];
-		}
+		case "-1":
+			o1_Freq.min 	= lowFreq[0];
+			o1_Freq.max 	= lowFreq[11];
+			activeFreqValue = lowFreq;
+			activeNoteValue = lowOctave;		
+			
+			break;
 	}
+	console.log('frequency values set from: ' + activeFreqValue[0] + 'to: ' + activeFreqValue[11] + '\n'
+				+ 'datalist option 1: ' + o1_Freq.list.options[0].value + '\n'
+				+ 'datalist option 12: ' + o1_Freq.list.options[11].value);
 }
 
 /*		 input data handlers 			*/
@@ -180,6 +172,14 @@ o1_Oct.onchange = function() {
 	setOctave();
 	
 	document.getElementById('oscOneOctave').innerHTML = oscOneOct;
+
+	document.getElementById('oscOneFreq').innerHTML = activeFreqValue[0];
+	o1_Freq.value 	= activeFreqValue[0];
+
+	for (i = 0; i <= activeFreqValue.length; i++) {
+
+		o1_Freq.list.options[i].innerHTML = activeNoteValue[i];
+	}
 }
 
 // osc I detune range slider, write to lcd display and set variable value
