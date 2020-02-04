@@ -147,6 +147,7 @@ o1_IO.onchange = function() {
 // osc I frequency range slider, write to lcd display and set variable value
 //o1_Freq.oninput = function() {
 o1_Freq.addEventListener('input', function () {
+
 	var i;
 
 	// Tone.Oscillator takes a float as input, data is in string format
@@ -155,7 +156,7 @@ o1_Freq.addEventListener('input', function () {
 	
 	for (i = 0; i <= activeFreqValue.length; i++) {
 
-		if (oscOneFreq == activeFreqValue[i]) {
+		if (oscOneFreq == parseFloat(activeFreqValue[i])) {
 			document.getElementById('oscOneFreq').innerHTML = activeNoteValue[i];
 			console.log('found match: ' + activeNoteValue[i] );
 			break;
