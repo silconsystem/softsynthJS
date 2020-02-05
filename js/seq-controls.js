@@ -3,8 +3,7 @@
 /* 		globals	*/
 var noteselected,
 	selectorID,
-	selectorVal,
-	noteSelectors;
+	selectorVal;
 
 /*		controls */
 var noteSelectors = document.querySelectorAll('.note-slider');
