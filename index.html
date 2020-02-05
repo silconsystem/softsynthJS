@@ -50,130 +50,18 @@
           <button id="loopBtn"><img src="images/loopbtn.png" ></button>
           <button id="resetBtn"><img src="images/resetbtn.png"></button>
       </div>
-        <!--<div class="sequencer-ctrls">
-          <table id="seq-controls" class="ctrl-layout">
-            <tr>
-              <td colspan="8">
-                <h1>sequencer</h1>
-              </td>
-            </tr>
-    
-            <tr>
-              <td>
-                <button id="start" class="btn-ctrl">start</button>
-              </td>
-              <td>
-                <button id="stop" class="btn-ctrl">stop</button>
-              </td>
-              <td colspan="3">
-                <input id="tempo-slider" type="range" class="range-sliders" min="60" max="250" value="120" step="1"></input>
-              </td>
-              <td>
-                BPM: 
-              </td>
-              <td>
-                <span id="tempo"></span>
-              </td>
-              <td>
-                <button id="reset" class="btn-ctrl">reset</button>
-              </td>
-            </tr>
-            <tr>
-              <td colspan="8">
-                <hr class="styled-hr">
-              </td>
-            </tr>
-              </td>
-            </tr>
-            <tr align="center">
-              <td class="seq-cells" width="64"><input type="checkbox" id="seq-radio-0" class="seq-check-btn"></input></td>
-              <td class="seq-cells" width="64"><input type="checkbox" id="seq-radio-1" class="seq-check-btn"></input></td>
-              <td class="seq-cells" width="64"><input type="checkbox" id="seq-radio-2" class="seq-check-btn"></input></td>
-              <td class="seq-cells" width="64"><input type="checkbox" id="seq-radio-3" class="seq-check-btn"></input></td>
-              <td class="seq-cells" width="64"><input type="checkbox" id="seq-radio-4" class="seq-check-btn"></input></td>
-              <td class="seq-cells" width="64"><input type="checkbox" id="seq-radio-5" class="seq-check-btn"></input></td>
-              <td class="seq-cells" width="64"><input type="checkbox" id="seq-radio-6" class="seq-check-btn"></input></td>
-              <td class="seq-cells" width="64"><input type="checkbox" id="seq-radio-7" class="seq-check-btn"></input></td>
-            </tr>
-            <tr align="center">
-              <td class="seq-cells" width="64">
-                <input type="range" orient="vertical" id="seq-note-select-0" class="vertical-range" list="note-list" min="0" max="12" step="1" oninput="getValues(this)"></input>
-              </td>
-              <td class="seq-cells" width="64">
-                <input type="range" orient="vertical" id="seq-note-select-1" class="vertical-range" list="note-list" min="0" max="12" step="1" oninput="getValues(this)"></input>
-              </td>
-              <td class="seq-cells" width="64">
-                <input type="range" orient="vertical" id="seq-note-select-2" class="vertical-range" list="note-list" min="0" max="12" step="1" oninput="getValues(this)"></input>
-              </td>
-              <td class="seq-cells" width="64">
-                <input type="range" orient="vertical" id="seq-note-select-3" class="vertical-range" list="note-list" min="0" max="12" step="1" oninput="getValues(this)"></input>
-              </td>
-              <td class="seq-cells" width="64">
-                <input type="range" orient="vertical" id="seq-note-select-4" class="vertical-range" list="note-list" min="0" max="12" step="1" oninput="getValues(this)"></input>
-              </td>
-              <td class="seq-cells" width="64">
-                <input type="range" orient="vertical" id="seq-note-select-5" class="vertical-range" list="note-list" min="0" max="12" step="1" oninput="getValues(this)"></input>
-              </td>
-              <td class="seq-cells" width="64">
-                <input type="range" orient="vertical" id="seq-note-select-6" class="vertical-range" list="note-list" min="0" max="12" step="1" oninput="getValues(this)"></input>
-              </td>
-              <td class="seq-cells" width="64">
-                <input type="range" orient="vertical" id="seq-note-select-7" class="vertical-range" list="note-list" min="0" max="12" step="1" oninput="getValues(this)"></input>
-              </td>
-            </tr>
-            <tr align="center">
-              <td class="seq-cells" width="64">
-                <span id="seq-note-0" class="seq-note"></span>
-              </td>
-              <td class="seq-cells" width="64">
-                <span id="seq-note-1" class="seq-note"></span>
-              </td>
-              <td class="seq-cells" width="64">
-                <span id="seq-note-2" class="seq-note"></span>
-              </td>
-              <td class="seq-cells" width="64">
-                <span id="seq-note-3" class="seq-note"></span>
-              </td>
-              <td class="seq-cells" width="64">
-                <span id="seq-note-4" class="seq-note"></span>
-              </td>
-              <td class="seq-cells" width="64">
-                <span id="seq-note-5" class="seq-note"></span>
-              </td>
-              <td class="seq-cells" width="64">
-                <span id="seq-note-6" class="seq-note"></span>
-              </td>
-              <td class="seq-cells" width="64">
-                <span id="seq-note-7" class="seq-note"></span>
-              </td>
-            </tr>
-            <tr>
-              <td colspan="2">octave: </td>
-              <td colspan="4">
-                <input type="range" id="oct-range" class="range-sliders" min="1" max="8" value="2" step="1">
-              </td>
-              <td colspan="2" align="center">
-                <span id="oct-selected"></span>
-              </td>
-            </tr>
-          </table> 
-          <datalist id="note-list">
-            <option>C</option>
-            <option>C#/Db</option>
-            <option>D</option>
-            <option>D#/Eb</option>
-            <option>E</option>
-            <option>E#/Fb</option>
-            <option>F</option>
-            <option>F#/Gb</option>
-            <option>G</option>
-            <option>G#/Ab</option>
-            <option>A</option>
-            <option>A#/Bb</option>
-            <option>B</option>
-            <option>B#/Cb</option>
-          </datalist>
-        </div>--><!-- sequencer-ctrls -->
+        <div id="sequencer-ctrls" class="sequencer-ctrls">
+          <div id="note-selectors" class="note-selectors">
+            <input type="range" orient="vertical" class="note-slider" min="0" max="11" value="0" list="frequencyData"><span class="note-selector-display"></span>
+            <input type="range" orient="vertical" class="note-slider" min="0" max="11" value="0" list="frequencyData"><span class="note-selector-display"></span>
+            <input type="range" orient="vertical" class="note-slider" min="0" max="11" value="0" list="frequencyData"><span class="note-selector-display"></span>
+            <input type="range" orient="vertical" class="note-slider" min="0" max="11" value="0" list="frequencyData"><span class="note-selector-display"></span>
+            <input type="range" orient="vertical" class="note-slider" min="0" max="11" value="0" list="frequencyData"><span class="note-selector-display"></span>
+            <input type="range" orient="vertical" class="note-slider" min="0" max="11" value="0" list="frequencyData"><span class="note-selector-display"></span>
+            <input type="range" orient="vertical" class="note-slider" min="0" max="11" value="0" list="frequencyData"><span class="note-selector-display"></span>
+            <input type="range" orient="vertical" class="note-slider" min="0" max="11" value="0" list="frequencyData"><span class="note-selector-display"></span>
+          </div>
+        </div><!-- sequencer-ctrls -->
       </div><!-- sequencer -->
       <div id="oscillator-one" class="four columns">
         

@@ -4,8 +4,15 @@ var startButton 	= document.getElementById('playBtn');
 var stopButton 		= document.getElementById('stopBtn');
 
 window.onload = function() { 
+	// load our notes to work with
+	// TODO: add pythaTuning
 	loadTuningData();
+	// get-set our Octave defaults
 	setOctave();
+	// set all range slider selectors to zero
+	// init Array of elements
+	// TODO: create good onload script later
+	setUpDefaults();
 }
 
 function startOscillator() {
